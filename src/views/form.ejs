@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio de sesión</title>
+    <%- include('partials/head')  %> 
 </head>
 <body>
     <% if (session.user) { %>
@@ -16,8 +13,8 @@
         <% } %>
     <% } %>
     <form action="/sesion" method="post">
-        <div>
-            <label>
+        <div class="form1Children">
+            <label class="form1Children__label">
                 <span>Ingrese su nombre</span>
                 <input type="text" name="name">
             </label>
@@ -26,8 +23,8 @@
             <% } %>
         </div>
 
-        <div>
-            <label>
+        <div class="form1Children">
+            <label class="form1Children__label">
                 <span>Elija el color de fondo</span>
                 <select name="color" id="">
                     <option value="" selected hidden>Elija el color</option>
@@ -42,8 +39,8 @@
             <% } %>
         </div>
        
-        <div>
-            <label>
+        <div class="form1Children">
+            <label class="form1Children__label">
                 <span>Ingrese su email</span>
                 <input type="email" name="email">
             </label>
@@ -52,8 +49,8 @@
             <% } %>
         </div>
 
-        <div>
-            <label>
+        <div class="form1Children">
+            <label class="form1Children__label">
                 <span>Ingrese su edad</span>
                 <input type="number" name="age">
             </label>
@@ -61,7 +58,7 @@
                 <span><%= errors.age.msg %> </span>
             <% } %>
         </div>
-        <label>
+        <label class="form1Children__label">
             <span>Recordar color</span>
             <input type="checkbox" name="remember" id="">
         </label>
@@ -70,5 +67,9 @@
         </div>
         
     </form>
+    <form action="/exit">
+        <button type="submit">Olvidar color</button>
+    </form>
+    <a href="/sesion">Otra vista!</a>
 </body>
 </html>

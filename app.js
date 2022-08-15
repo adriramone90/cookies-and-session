@@ -6,12 +6,13 @@ require('dotenv').config();
 const path = require('path')
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const reloginCookie = require('./src/middlewares/reloginCookie')
 
 const PORT = process.env.PORT || 3000;
 const SECRET = process.env.SECRET || 'secreto'
 
 const indexRouter = require('./src/routes/indexRouter');
-
+app.use(express.static(path.join(__dirname, '/public')))
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 app.use(session({
@@ -21,6 +22,7 @@ app.use(session({
     cookie: {}
 }));
 app.use(cookieParser());
+app.use(reloginCookie)
 
 app.set("view engine","ejs");
 app.set("views", path.join(__dirname, "/src/views"));
