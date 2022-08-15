@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de sesión</title>
+</head>
+<body>
+    <% if (session.user) { %>
+        <h2>Hola <%=session.user.name%> </h2>
+        <p> Elegiste el color: <%=session.user.color%></p>
+        <p> Tu email es: <%=session.user.email%></p>
+        <% if (session.user.age) { %>
+            <p>Tu edad es <%=session.user.age%> </p>
+        <% } %>
+    <% } %>
+    <form action="/sesion" method="post">
+        <div>
+            <label>
+                <span>Ingrese su nombre</span>
+                <input type="text" name="name">
+            </label>
+            <% if (locals.errors && errors.name) { %>
+                <span><%= errors.name.msg %> </span>
+            <% } %>
+        </div>
+
+        <div>
+            <label>
+                <span>Elija el color de fondo</span>
+                <select name="color" id="">
+                    <option value="" selected hidden>Elija el color</option>
+                    <option value="1">color 1</option>
+                    <option value="2">color 2</option>
+                    <option value="3">color 3</option>
+                    <option value="4">color 4</option>
+                </select>
+            </label>
+            <% if (locals.errors && errors.color) { %>
+                <span><%= errors.color.msg %> </span>
+            <% } %>
+        </div>
+       
+        <div>
+            <label>
+                <span>Ingrese su email</span>
+                <input type="email" name="email">
+            </label>
+            <% if (locals.errors && errors.email) { %>
+                <span><%= errors.email.msg %> </span>
+            <% } %>
+        </div>
+
+        <div>
+            <label>
+                <span>Ingrese su edad</span>
+                <input type="number" name="age">
+            </label>
+            <% if (locals.errors && errors.age) { %>
+                <span><%= errors.age.msg %> </span>
+            <% } %>
+        </div>
+        <label>
+            <span>Recordar color</span>
+            <input type="checkbox" name="remember" id="">
+        </label>
+        <div>
+            <button type="submit">Enviar</button>
+        </div>
+        
+    </form>
+</body>
+</html>
